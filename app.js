@@ -4,7 +4,7 @@ const landingsApi = require('./controllers/landingsApi');
 const neasApi = require('./controllers/neasApi');
 const app = express();
 const cors = require('cors');
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 require('./utils/dbmongo');
 
@@ -24,5 +24,5 @@ app.post('/api/astronomy/landings/create', landingsApi.createLanding);
 // app.delete('/api/astronomy/landings/delete/',landingsApi. deleteLanding);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://${port}`)
   });
