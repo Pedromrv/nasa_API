@@ -57,11 +57,35 @@ const getLandingByClass = async(req, res) => {
     }
 }
 
+// const createLanding = async (req, res) => {
+//     if (Object.keys(req.body).length !== 0) {
+//         try {
+//             await Landing.create(req.body);
+//             res.status(201).json({ message: 'Landing creada' });
+//         }
+//         catch (error) {
+//             res.status(400).json({ message: error });
+//         }
+//     } else {
+//         res.status(400).json({ message: 'No tenemos datos' });
+//     }
+// }
+
+const createLanding = async (req, res) => {
+    console.log(req.body);
+    try {
+        const land = await new Landing(req.body).save();
+        res.status(200).send({"message":'landing creada'})
+    } catch (err) {
+        res.status(400).json({message:err});
+    }
+};
 
 const landing = {
     getLandingByQuery,
     getLandingByMass,
-    getLandingByClass
+    getLandingByClass,
+    createLanding
 }
 
 module.exports = landing
